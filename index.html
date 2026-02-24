@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omkari Vijay Bobade · electrical & Arduino portfolio</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Inter + fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f7fc;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1a2639;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- header / navbar ---------- */
+    .header {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,40,80,0.1);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b2b4e, #1f4b8a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e3b5c;
+      font-size: 1rem;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: #1f4b8a;
+      border-bottom-color: #1f4b8a;
+    }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      padding: 0.65rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #1a2639;
+      box-shadow: 0 6px 14px rgba(0,20,40,0.04);
+      transition: all 0.2s;
+      border: 1px solid #d9e2ef;
+    }
+
+    .btn-primary {
+      background: #1f4b8a;
+      color: white;
+      border: none;
+      box-shadow: 0 10px 18px -8px #1f4b8a80;
+    }
+
+    .btn-primary:hover {
+      background: #103a66;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline:hover {
+      background: #e7eefb;
+      border-color: #1f4b8a;
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+      margin: 3rem 0 4rem 0;
+    }
+
+    .hero-content {
+      flex: 1 1 350px;
+    }
+
+    .badge {
+      background: rgba(31,75,138,0.1);
+      color: #1f4b8a;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.4px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      color: #1f4b8a;
+      border-bottom: 4px solid rgba(31,75,138,0.25);
+    }
+
+    .hero-para {
+      font-size: 1.2rem;
+      color: #2c3f5c;
+      max-width: 550px;
+      margin: 1.5rem 0 2rem 0;
+    }
+
+    .hero-image {
+      flex: 1 1 280px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 46% 54% 38% 62% / 56% 42% 58% 44%;
+      background: linear-gradient(135deg, #1f4b8a, #4b7ec1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5.5rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 30px 30px -15px #1f4b8a;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-circle:hover {
+      transform: scale(1.02) rotate(1deg);
+    }
+
+    /* quick info strip */
+    .info-strip {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #ffffffd0;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+
+    .info-item i {
+      color: #1f4b8a;
+      font-size: 1.1rem;
+    }
+
+    /* section headings */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 3.5rem 0 1.5rem 0;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #1f4b8a;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* education card */
+    .edu-card {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem 2rem;
+      box-shadow: 0 15px 25px -10px rgba(0,35,70,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      border: 1px solid #eef3fc;
+    }
+
+    .edu-icon {
+      font-size: 2.8rem;
+      background: #e2ebf9;
+      width: 80px;
+      height: 80px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f4b8a;
+    }
+
+    .edu-details h3 {
+      font-size: 1.8rem;
+      font-weight: 650;
+    }
+
+    .edu-details p {
+      color: #2b4a6e;
+      font-size: 1.2rem;
+    }
+
+    /* projects grid (arduino / minor projects) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem 1.5rem;
+      transition: all 0.25s;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.06);
+      border: 1px solid rgba(31,75,138,0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 30px -15px #1f4b8a60;
+      border-color: #a3c2e0;
+    }
+
+    .project-icon {
+      background: #e2ebf9;
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #1f4b8a;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.7rem;
+      font-weight: 650;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .project-tags span {
+      background: #eef3fc;
+      padding: 0.25rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1f4b8a;
+    }
+
+    .project-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1f4b8a;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* contact / footer area */
+    .contact-section {
+      background: white;
+      border-radius: 50px 50px 30px 30px;
+      padding: 3rem 2.5rem;
+      margin: 5rem 0 2rem;
+      box-shadow: 0 20px 30px -8px rgba(31,75,138,0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contact-left h2 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+      color: #1f4b8a;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .social-links a {
+      color: #1f3b5c;
+      font-size: 1.8rem;
+      transition: 0.15s;
+    }
+
+    .social-links a:hover {
+      color: #1f4b8a;
+      transform: scale(1.1);
+    }
+
+    .contact-email {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f1f6fe;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .contact-email i {
+      color: #1f4b8a;
+      font-size: 1.4rem;
+    }
+
+    .contact-email a {
+      text-decoration: none;
+      color: #1a2639;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem;
+      color: #4e6580;
+      border-top: 1px solid #d3e0f0;
+      margin-top: 2rem;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .avatar-circle {
+        width: 240px;
+        height: 240px;
+        font-size: 4.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- start header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">Omkari V. Bobade</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#education">Education</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="padding:0.5rem 1.8rem;"><i class="fas fa-paper-plane"></i>Hire me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <!-- hero section -->
+    <div class="hero">
+      <div class="hero-content">
+        <span class="badge"><i class="fas fa-microchip"></i> electrical engineer & maker</span>
+        <h1>Hello, I'm <span class="hero-name">Omkari Vijay Bobade</span></h1>
+        <p class="hero-para">B.Tech in Electrical Engineering · passionate about Arduino, embedded systems and building practical hardware solutions.</p>
+        
+        <div class="info-strip">
+          <div class="info-item"><i class="fas fa-graduation-cap"></i> B.Tech EE</div>
+          <div class="info-item"><i class="fas fa-lightbulb"></i> 5+ minor projects</div>
+          <div class="info-item"><i class="fas fa-microchip"></i> Arduino Uno</div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem;">
+          <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i>View projects</a>
+          <a href="https://github.com/omkaribobade6-dotcom" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i>GitHub profile</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="avatar-circle">OVB</div>
+      </div>
+    </div>
+
+    <!-- education section -->
+    <section id="education">
+      <h2 class="section-title">education</h2>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-bolt"></i></div>
+        <div class="edu-details">
+          <h3>B.Tech in Electrical Engineering</h3>
+          <p>Government College of Engineering · 2021 – 2025 (expected)</p>
+          <p style="margin-top:0.5rem; color:#3a5670;">Relevant coursework: embedded systems, circuit design, microcontrollers</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- projects: arduino + minor projects -->
+    <section id="projects">
+      <h2 class="section-title">Arduino & minor projects</h2>
+      <div class="projects-grid">
+        <!-- project 1 : Arduino Uno based -->
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-thermometer-half"></i></div>
+          <h3>Smart Temp & Humidity</h3>
+          <p style="color:#2f4567;">Arduino Uno + DHT11 + LCD display — real‑time monitoring with auto fan control.</p>
+          <div class="project-tags">
+            <span>Arduino Uno</span>
+            <span>C++</span>
+            <span>DHT11</span>
+          </div>
+          <a href="#" class="project-link"><i class="fab fa-github"></i> code & schematics</a>
+        </div>
+
+        <!-- project 2 : obstacle avoidance bot -->
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-robot"></i></div>
+          <h3>Obstacle Avoider Bot</h3>
+          <p style="color:#2f4567;">Ultrasonic sensor + motor driver · autonomous navigation with Arduino Uno.</p>
+          <div class="project-tags">
+            <span>HC‑SR04</span>
+            <span>L293D</span>
+            <span>servo</span>
+          </div>
+          <a href="#" class="project-link"><i class="fab fa-github"></i> view code</a>
+        </div>
+
+        <!-- project 3 : home automation (minor) -->
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-home"></i></div>
+          <h3>Bluetooth Home Control</h3>
+          <p style="color:#2f4567;">Control lights and fan via smartphone (HC‑05) · relay module + Arduino.</p>
+          <div class="project-tags">
+            <span>HC‑05</span>
+            <span>relay</span>
+            <span>Android</span>
+          </div>
+          <a href="#" class="project-link"><i class="fab fa-github"></i> project files</a>
+        </div>
+
+        <!-- project 4 : ir counter / minor -->
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-tally"></i></div>
+          <h3>IR Object Counter</h3>
+          <p style="color:#2f4567;">IR sensor + 16x2 LCD displays count — used for conveyor belt simulation.</p>
+          <div class="project-tags">
+            <span>IR sensor</span>
+            <span>I2C LCD</span>
+            <span>timer</span>
+          </div>
+          <a href="#" class="project-link"><i class="fab fa-github"></i> details</a>
+        </div>
+      </div>
+      <!-- link to github profile (all projects) -->
+      <div style="display: flex; justify-content: center; margin: 1.5rem 0 2rem;">
+        <a href="https://github.com/omkaribobade6-dotcom" target="_blank" class="btn btn-outline" style="padding:0.9rem 2.5rem;"><i class="fab fa-github"></i> see all on GitHub</a>
+      </div>
+    </section>
+
+    <!-- contact + footer already inside main, but we embed contact box -->
+    <section id="contact">
+      <div class="contact-section">
+        <div class="contact-left">
+          <h2>Let's <span class="highlight">connect</span> — I'm open to opportunities</h2>
+          <div class="social-links">
+            <a href="https://github.com/omkaribobade6-dotcom" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-twitter"></i></a>
+          </div>
+          <!-- email row -->
+          <div class="contact-email">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:omkaribobade6@gmail.com">omkaribobade6@gmail.com</a>
+          </div>
+        </div>
+        <div>
+          <a href="mailto:omkaribobade6@gmail.com" class="btn btn-primary" style="font-size:1.1rem; padding:1rem 2.2rem;"><i class="fas fa-paper-plane"></i> send message</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="footer container">
+    <p><i class="far fa-copyright"></i> 2025 Omkari Vijay Bobade — Electrical Engineering & Arduino</p>
+    <p style="margin-top:0.5rem; font-size:0.9rem;">built with <i class="fas fa-heart" style="color:#c03e5c;"></i> for a professional portfolio · header & footer dynamic</p>
+    <p style="margin-top:1rem;">
+      <a href="https://github.com/omkaribobade6-dotcom" target="_blank" style="color:#1f4b8a; text-decoration:none;">GitHub</a> &nbsp;|&nbsp; 
+      <a href="mailto:omkaribobade6@gmail.com" style="color:#1f4b8a; text-decoration:none;">Email</a>
+    </p>
+  </footer>
+
+  <!-- tiny interactive hover effect (optional) just for demonstration -->
+  <script>
+    // simple console greet (dynamic touch)
+    (function() {
+      console.log("⚡ Omkari's portfolio — thanks for stopping by!");
+    })();
+  </script>
+</body>
+</html>
